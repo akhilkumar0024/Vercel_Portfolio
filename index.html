@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akhil Kumar — Systems Architecture &amp; Product Strategy</title>
+  
+  <!-- SEO & Social Graph Meta Tags -->
+  <meta name="description" content="Personal portfolio of Akhil Kumar. Software development engineer exploring product thinking, user-focused applications, cloud infrastructure, and platform engineering.">
+  <meta name="author" content="Akhil Kumar">
+  <meta name="theme-color" content="#FAF8F5">
+  <meta property="og:title" content="Akhil Kumar — Systems Architecture &amp; Product Strategy">
+  <meta property="og:description" content="Building products. Engineering the platforms behind them. Portfolio featuring Nipp-On, Smart Helmet SIM, and CloudScale URL Shortener.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Akhil Kumar — Systems Architecture &amp; Product Strategy">
+  <meta name="twitter:description" content="Building products. Engineering the platforms behind them.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Tailwind CDN (Runtime Engine) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#FAF8F5",
+            "surface": "#FAF8F5",
+            "surface-card": "#FFFFFF",
+            "surface-subtle": "#F4F1EB",
+            "surface-inset": "#EFECE6",
+            "on-surface": "#1C1917",
+            "on-surface-variant": "#57534E",
+            "primary": "#1B4332",
+            "primary-hover": "#143326",
+            "primary-light": "#E8F0EB",
+            "border-subtle": "#E5E2DC",
+            "border-medium": "#D6D2CA",
+            "accent": "#2D6A4F",
+            "terracotta": "#C85A32",
+            "sage": "#D8F3DC"
+          },
+          fontFamily: {
+            display: ["Newsreader", "Georgia", "serif"],
+            headline: ["Newsreader", "Georgia", "serif"],
+            body: ["DM Sans", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Core Standalone Design System & Overrides -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body class="bg-[#FAF8F5] text-[#1C1917] font-body antialiased selection:bg-[#E8F0EB] selection:text-[#1B4332] min-h-screen">
+
+  <!-- Accessibility Skip Navigation -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-50 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E5E2DC] transition-colors">
+    <div class="max-w-6xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="font-display text-xl font-medium tracking-tight text-[#1C1917] hover:text-[#1B4332] transition-colors" aria-label="Akhil Kumar Homepage">
+        Akhil Kumar
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 sm:gap-8 text-sm font-medium" aria-label="Main Navigation">
+        <a href="#projects" class="text-[#57534E] hover:text-[#1B4332] transition-colors">Projects</a>
+        <a href="#focus" class="text-[#57534E] hover:text-[#1B4332] transition-colors">Focus</a>
+        <a href="#about" class="text-[#57534E] hover:text-[#1B4332] transition-colors">About</a>
+        <a href="#resume" class="text-[#57534E] hover:text-[#1B4332] transition-colors">Resume</a>
+        <a href="https://github.com/akhilkumar0024" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[#57534E] hover:text-[#1B4332] transition-colors" aria-label="GitHub Profile (opens in new tab)">
+          <span>GitHub</span>
+          <span class="material-symbols-outlined text-[15px]" aria-hidden="true">north_east</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded text-[#57534E] hover:text-[#1B4332] hover:bg-[#F4F1EB] transition-colors" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="material-symbols-outlined text-2xl" aria-hidden="true">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-[#FAF8F5] flex-col justify-between p-6 overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-[#E5E2DC]">
+          <span class="font-display text-xl font-medium text-[#1C1917]">Akhil Kumar</span>
+          <button id="mobile-menu-close-btn" type="button" class="p-2 text-[#57534E] hover:text-[#1B4332] rounded" aria-label="Close Navigation Menu">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-5 pt-8 text-lg font-medium" aria-label="Mobile Navigation">
+          <a href="#projects" class="mobile-nav-link text-[#1C1917] hover:text-[#1B4332] transition-colors">Projects</a>
+          <a href="#focus" class="mobile-nav-link text-[#1C1917] hover:text-[#1B4332] transition-colors">Focus</a>
+          <a href="#about" class="mobile-nav-link text-[#1C1917] hover:text-[#1B4332] transition-colors">About</a>
+          <a href="#resume" class="mobile-nav-link text-[#1C1917] hover:text-[#1B4332] transition-colors">Resume &amp; Contact</a>
+          <a href="https://github.com/akhilkumar0024" target="_blank" rel="noopener noreferrer" class="mobile-nav-link inline-flex items-center gap-1.5 text-[#57534E] hover:text-[#1B4332] pt-2">
+            <span>GitHub</span>
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">north_east</span>
+          </a>
+          <a href="https://linkedin.com/in/akhilkumar0024" target="_blank" rel="noopener noreferrer" class="mobile-nav-link inline-flex items-center gap-1.5 text-[#57534E] hover:text-[#1B4332]">
+            <span>LinkedIn</span>
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">north_east</span>
+          </a>
+        </nav>
+      </div>
+      <div class="pt-6 border-t border-[#E5E2DC] text-xs font-mono text-[#57534E]">
+        <p>Building products. Engineering the platforms behind them.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="main-content" class="max-w-6xl mx-auto px-6 sm:px-8 py-12 md:py-16 space-y-20 md:space-y-28">
+
+    <!-- 1. Hero Section -->
+    <section class="max-w-3xl pt-4 md:pt-8" aria-labelledby="hero-heading">
+      <h1 id="hero-heading" class="font-display text-4xl sm:text-5xl md:text-6xl text-[#1B4332] font-normal tracking-tight leading-[1.15] mb-6">
+        Building products. Engineering the platforms behind them.
+      </h1>
+      <p class="font-body text-lg sm:text-xl text-[#57534E] font-normal leading-relaxed mb-8">
+        I’m a computer science graduate with software development experience, building projects across product thinking, user-focused applications, cloud infrastructure, and platform engineering. I enjoy understanding problems, making practical design decisions, and exploring how reliable digital systems are built.
+      </p>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#projects" class="inline-flex items-center justify-center px-6 py-3 rounded bg-[#1B4332] text-white hover:bg-[#143326] font-medium text-sm transition-all shadow-sm">
+          Explore Projects
+        </a>
+        <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 rounded border border-[#1B4332] text-[#1B4332] hover:bg-[#EFECE6] font-medium text-sm transition-colors">
+          Get in Touch
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. Areas of Focus -->
+    <section id="focus" class="pt-4 scroll-mt-24" aria-labelledby="focus-heading">
+      <div class="flex items-center justify-between border-b border-[#E5E2DC] pb-3 mb-8">
+        <h2 id="focus-heading" class="font-display text-2xl md:text-3xl font-medium text-[#1C1917]">Areas of Focus</h2>
+        <span class="font-mono text-xs text-[#57534E] uppercase tracking-wider">How I Work</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <!-- Area 1: Product Thinking & Operations -->
+        <article class="p-6 sm:p-8 bg-white border border-[#E5E2DC] rounded-lg shadow-sm flex flex-col justify-between hover-lift">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs font-medium px-2.5 py-1 bg-[#F4F1EB] text-[#1B4332] rounded">Product &amp; Operations</span>
+              <span class="material-symbols-outlined text-[#1B4332]" aria-hidden="true">lightbulb</span>
+            </div>
+            <h3 class="font-display text-2xl text-[#1B4332] mb-3">Product Thinking &amp; Operations</h3>
+            <p class="font-body text-sm sm:text-base text-[#57534E] leading-relaxed mb-6">
+              Exploring user problems, defining useful features, organizing product requirements, and turning ideas into practical, testable experiences.
+            </p>
+            <div class="mb-6">
+              <span class="font-mono text-xs uppercase tracking-wider text-[#57534E] block mb-2 font-medium">Core Capabilities</span>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">Problem Framing</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">User Journeys</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">Feature Prioritization</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">Product Requirements</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">Feedback &amp; Iteration</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-[#E5E2DC] flex items-center justify-between text-xs font-mono text-[#57534E]">
+            <span>Highlighted Case</span>
+            <span class="text-[#1B4332] font-semibold">Nipp-On Prototype</span>
+          </div>
+        </article>
+
+        <!-- Area 2: Cloud & Platform Engineering -->
+        <article class="p-6 sm:p-8 bg-white border border-[#E5E2DC] rounded-lg shadow-sm flex flex-col justify-between hover-lift">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs font-medium px-2.5 py-1 bg-[#F4F1EB] text-[#1B4332] rounded">Infrastructure &amp; Systems</span>
+              <span class="material-symbols-outlined text-[#1B4332]" aria-hidden="true">hub</span>
+            </div>
+            <h3 class="font-display text-2xl text-[#1B4332] mb-3">Cloud &amp; Platform Engineering</h3>
+            <p class="font-body text-sm sm:text-base text-[#57534E] leading-relaxed mb-6">
+              Building and experimenting with cloud infrastructure, containerized services, deployment workflows, and the operational foundations of digital products.
+            </p>
+            <div class="mb-6">
+              <span class="font-mono text-xs uppercase tracking-wider text-[#57534E] block mb-2 font-medium">Core Capabilities</span>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">AWS Services</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">Docker &amp; Kubernetes</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">Infrastructure as Code</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">CI/CD Workflows</span>
+                <span class="px-2.5 py-1 bg-[#FAF8F5] border border-[#E5E2DC] rounded text-xs font-medium text-[#1C1917]">Monitoring &amp; Observability</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-[#E5E2DC] flex items-center justify-between text-xs font-mono text-[#57534E]">
+            <span>Highlighted Works</span>
+            <span class="text-[#1B4332] font-semibold">Smart Helmet SIM &amp; URL Shortener</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Selected Projects -->
+    <section id="projects" class="pt-4 scroll-mt-24" aria-labelledby="projects-heading">
+      <div class="flex items-center justify-between border-b border-[#E5E2DC] pb-3 mb-8">
+        <h2 id="projects-heading" class="font-display text-2xl md:text-3xl font-medium text-[#1C1917]">Selected Projects</h2>
+        <span class="font-mono text-xs text-[#57534E] uppercase tracking-wider">Selected Work</span>
+      </div>
+
+      <div class="space-y-8">
+        <!-- Project 1: Nipp-On -->
+        <article class="p-6 sm:p-8 bg-white border border-[#E5E2DC] rounded-lg shadow-sm hover-lift">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+            <div>
+              <span class="font-mono text-xs font-medium text-[#1B4332] uppercase tracking-wider">Product &amp; EdTech Prototype</span>
+              <h3 class="font-display text-2xl sm:text-3xl text-[#1C1917] mt-1">Nipp-On</h3>
+            </div>
+            <a href="https://github.com/akhilkumar0024/Nipp-On" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-medium text-[#1B4332] hover:underline self-start sm:self-auto" aria-label="View Nipp-On source on GitHub (opens in new tab)">
+              <span>View Source on GitHub</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">north_east</span>
+            </a>
+          </div>
+
+          <p class="font-body text-base text-[#57534E] leading-relaxed mb-6">
+            An AI-assisted Japanese vocabulary learning and conversation practice application focused on JLPT N5 learners, combining vocabulary breakdowns, conversational tutoring, quizzes, browser-based speech capabilities, and a persistent vocabulary notebook.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="p-4 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-xs font-semibold text-[#1C1917] uppercase tracking-wider block mb-1.5">Goals &amp; Learning Flow</span>
+              <p class="font-body text-sm text-[#57534E] leading-relaxed">
+                Addresses the steep learning curve beginner JLPT N5 learners face with kana and vocabulary retention through guided conversational prompts, interactive quizzes, and persistent progress logging.
+              </p>
+            </div>
+            <div class="p-4 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-xs font-semibold text-[#1C1917] uppercase tracking-wider block mb-1.5">UX Decisions &amp; AI Integration</span>
+              <p class="font-body text-sm text-[#57534E] leading-relaxed">
+                Integrates Google Gemini API for conversational tutoring and contextual feedback. Uses structured curated vocabulary sets as reliable foundational content alongside client speech synthesis.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-4 border-l-2 border-[#1B4332] bg-[#FAF8F5] mb-6">
+            <span class="font-mono text-xs font-semibold text-[#1B4332] uppercase tracking-wider block mb-1">Implementation Note &amp; Current Scope</span>
+            <p class="font-body text-sm text-[#57534E]">
+              Speech synthesis and recognition rely on native browser Web Speech API engines, which vary according to operating system language pack support and client microphone clarity. Uses localStorage for the persistent vocabulary notebook.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#E5E2DC] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <div class="flex flex-wrap gap-2 text-[#57534E]">
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">React</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">TypeScript</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Vite</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Tailwind CSS</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Google Gemini API</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Web Speech API</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Vercel</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">localStorage</span>
+            </div>
+            <span class="text-[#57534E]">github.com/akhilkumar0024/Nipp-On</span>
+          </div>
+        </article>
+
+        <!-- Project 2: Smart Helmet SIM -->
+        <article class="p-6 sm:p-8 bg-white border border-[#E5E2DC] rounded-lg shadow-sm hover-lift">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+            <div>
+              <span class="font-mono text-xs font-medium text-[#1B4332] uppercase tracking-wider">Simulated AWS IoT &amp; Cloud Infrastructure</span>
+              <h3 class="font-display text-2xl sm:text-3xl text-[#1C1917] mt-1">Smart Helmet SIM</h3>
+            </div>
+            <a href="https://github.com/akhilkumar0024/IOT-EDGE-INFRA-SmartHelmet-SIM" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-medium text-[#1B4332] hover:underline self-start sm:self-auto" aria-label="View Smart Helmet SIM source on GitHub (opens in new tab)">
+              <span>View Source on GitHub</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">north_east</span>
+            </a>
+          </div>
+
+          <p class="font-body text-base text-[#57534E] leading-relaxed mb-6">
+            A simulated AWS IoT telemetry and emergency-response infrastructure project exploring event-driven processing, crash-anomaly validation, rider override workflows, emergency notification logic, and decoupled cloud infrastructure.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+            <div class="p-4 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-xs font-semibold text-[#1C1917] block mb-1">1. Telemetry Ingestion</span>
+              <p class="font-body text-xs text-[#57534E] leading-normal">Simulated sensor client emits sensor impact payloads via MQTT over TLS into AWS IoT Core topic rules.</p>
+            </div>
+            <div class="p-4 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-xs font-semibold text-[#1C1917] block mb-1">2. Event Processing &amp; Anomaly</span>
+              <p class="font-body text-xs text-[#57534E] leading-normal">Amazon SQS buffers incoming messages; containerized workers in ECS Fargate validate anomalous thresholds against DynamoDB.</p>
+            </div>
+            <div class="p-4 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-xs font-semibold text-[#1C1917] block mb-1">3. Override &amp; Notification Flow</span>
+              <p class="font-body text-xs text-[#57534E] leading-normal">AWS Step Functions manages the rider override timeout window; dispatches emergency notifications via SES and operational alerts via SNS.</p>
+            </div>
+          </div>
+
+          <div class="p-4 border-l-2 border-[#1B4332] bg-[#FAF8F5] mb-6">
+            <span class="font-mono text-xs font-semibold text-[#1B4332] uppercase tracking-wider block mb-1">Simulation Context &amp; Alert Architecture</span>
+            <p class="font-body text-sm text-[#57534E]">
+              A software simulation exploring telemetry and decoupled cloud workflows, not physical or automotive-certified hardware. Amazon SNS handles operational alerts and CloudWatch alarms (DLQ, DynamoDB throttling, Step Functions failures), while Amazon SES delivers direct emergency notification emails.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#E5E2DC] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <div class="flex flex-wrap gap-2 text-[#57534E]">
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">AWS IoT Core</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Amazon SQS</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Amazon SNS</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Amazon SES</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Amazon ECS Fargate</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Amazon DynamoDB</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">AWS Step Functions</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">AWS SSM Parameter Store</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Terraform</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">GitHub Actions</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">GitHub Actions OIDC</span>
+            </div>
+            <span class="text-[#57534E]">github.com/akhilkumar0024/IOT-EDGE-INFRA-SmartHelmet-SIM</span>
+          </div>
+        </article>
+
+        <!-- Project 3: CloudScale URL Shortener -->
+        <article class="p-6 sm:p-8 bg-white border border-[#E5E2DC] rounded-lg shadow-sm hover-lift">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+            <div>
+              <span class="font-mono text-xs font-medium text-[#1B4332] uppercase tracking-wider">Distributed Systems &amp; Platform Engineering</span>
+              <h3 class="font-display text-2xl sm:text-3xl text-[#1C1917] mt-1">CloudScale URL Shortener</h3>
+            </div>
+            <a href="https://github.com/akhilkumar0024/url-shortener-eks-platform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-medium text-[#1B4332] hover:underline self-start sm:self-auto" aria-label="View CloudScale URL Shortener source on GitHub (opens in new tab)">
+              <span>View Source on GitHub</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">north_east</span>
+            </a>
+          </div>
+
+          <p class="font-body text-base text-[#57534E] leading-relaxed mb-6">
+            A distributed URL-shortening platform exploring API services, Redis caching, PostgreSQL persistence, asynchronous click analytics, Kubernetes deployment, and operational observability.
+          </p>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            <div class="p-3 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-[11px] text-[#57534E] uppercase block mb-1">Data Storage</span>
+              <span class="font-body text-sm font-medium text-[#1C1917] block">PostgreSQL</span>
+              <span class="font-body text-xs text-[#57534E]">Persistent link schemas</span>
+            </div>
+            <div class="p-3 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-[11px] text-[#57534E] uppercase block mb-1">Read Acceleration</span>
+              <span class="font-body text-sm font-medium text-[#1C1917] block">Redis Caching</span>
+              <span class="font-body text-xs text-[#57534E]">Read-through resolution</span>
+            </div>
+            <div class="p-3 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-[11px] text-[#57534E] uppercase block mb-1">Queue Buffering</span>
+              <span class="font-body text-sm font-medium text-[#1C1917] block">Amazon SQS</span>
+              <span class="font-body text-xs text-[#57534E]">Async click logging</span>
+            </div>
+            <div class="p-3 bg-[#FAF8F5] border border-[#E5E2DC] rounded">
+              <span class="font-mono text-[11px] text-[#57534E] uppercase block mb-1">Orchestration</span>
+              <span class="font-body text-sm font-medium text-[#1C1917] block">Amazon EKS</span>
+              <span class="font-body text-xs text-[#57534E]">Prometheus metrics</span>
+            </div>
+          </div>
+
+          <div class="p-4 border-l-2 border-[#1B4332] bg-[#FAF8F5] mb-6">
+            <span class="font-mono text-xs font-semibold text-[#1B4332] uppercase tracking-wider block mb-1">Architecture &amp; Engineering Trade-offs</span>
+            <p class="font-body text-sm text-[#57534E]">
+              Features modular Python FastAPI services paired with a React analytics dashboard. Separated the read redirect path from analytics recording using asynchronous Amazon SQS buffering so that write volume does not stall user link redirections. Exposes Prometheus metrics for operational visibility.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#E5E2DC] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <div class="flex flex-wrap gap-2 text-[#57534E]">
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Python</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">FastAPI</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">React</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Redis</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">PostgreSQL</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Amazon SQS</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">AWS Lambda</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Terraform</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Kubernetes</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Amazon EKS</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Prometheus</span>
+              <span class="bg-[#F4F1EB] px-2 py-0.5 rounded">Docker</span>
+            </div>
+            <span class="text-[#57534E]">github.com/akhilkumar0024/url-shortener-eks-platform</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. About Section -->
+    <section id="about" class="pt-4 scroll-mt-24" aria-labelledby="about-heading">
+      <div class="flex items-center justify-between border-b border-[#E5E2DC] pb-3 mb-8">
+        <h2 id="about-heading" class="font-display text-2xl md:text-3xl font-medium text-[#1C1917]">About</h2>
+        <span class="font-mono text-xs text-[#57534E] uppercase tracking-wider">Background &amp; Education</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <!-- Professional Narrative -->
+        <div class="lg:col-span-5 space-y-4 text-base text-[#57534E] leading-relaxed">
+          <p>
+            My background combines software engineering foundations with hands-on exploration of product design and cloud platforms. I focus on understanding user requirements clearly before writing code, and ensuring the systems running beneath applications are resilient, maintainable, and observable.
+          </p>
+          <p>
+            Having worked in both software development and post-graduate systems computing, I value practical architectural choices over unnecessary complexity, whether structuring database queries, container orchestration, or user interaction flows.
+          </p>
+          <div class="p-4 bg-white border border-[#E5E2DC] rounded-lg mt-6">
+            <p class="font-display text-sm italic text-[#1C1917]">
+              “Bridging the user-facing logic of applications with resilient, cost-aware infrastructure that behaves deterministically under real conditions.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Experience & Education Timeline -->
+        <div class="lg:col-span-7">
+          <div class="relative pl-6 border-l border-[#E5E2DC] space-y-8">
+            <!-- Experience: Kapiva -->
+            <div class="relative">
+              <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-[#1B4332] border-2 border-[#FAF8F5]"></div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-display text-lg font-medium text-[#1C1917]">Kapiva</h3>
+                  <span class="font-mono text-[11px] px-2 py-0.5 bg-[#F4F1EB] text-[#1B4332] rounded font-medium">Work Experience</span>
+                </div>
+                <span class="font-mono text-xs text-[#57534E]">JUL 2025 – NOV 2025</span>
+              </div>
+              <p class="font-body text-xs font-medium text-[#1B4332] uppercase tracking-wider mb-2">Full Stack Developer</p>
+              <p class="font-body text-sm text-[#57534E] leading-relaxed">
+                Contributed to user-facing web features and backend service integration, working with team product requirements to implement reliable digital releases.
+              </p>
+            </div>
+
+            <!-- Professional Training: Masai -->
+            <div class="relative">
+              <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-[#1B4332] border-2 border-[#FAF8F5]"></div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-display text-lg font-medium text-[#1C1917]">Masai</h3>
+                  <span class="font-mono text-[11px] px-2 py-0.5 bg-[#F4F1EB] text-[#1B4332] rounded font-medium">Professional Training</span>
+                </div>
+                <span class="font-mono text-xs text-[#57534E]">SEP 2024 – MAY 2025</span>
+              </div>
+              <p class="font-body text-xs font-medium text-[#1B4332] uppercase tracking-wider mb-2">Full Stack Development Program</p>
+              <p class="font-body text-sm text-[#57534E] leading-relaxed">
+                Completed structured training in full-stack development, building practical skills in software development and modern application architecture.
+              </p>
+            </div>
+
+            <!-- Postgraduate: CDAC ACTS, Pune -->
+            <div class="relative">
+              <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-[#57534E] border-2 border-[#FAF8F5]"></div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-display text-lg font-medium text-[#1C1917]">CDAC ACTS, Pune</h3>
+                  <span class="font-mono text-[11px] px-2 py-0.5 bg-[#F4F1EB] text-[#57534E] rounded font-medium">Postgraduate</span>
+                </div>
+                <span class="font-mono text-xs text-[#57534E]">SEP 2023 – FEB 2024</span>
+              </div>
+              <p class="font-body text-xs font-medium text-[#1B4332] uppercase tracking-wider mb-2">PG Diploma in Advanced Computing (PG-DAC)</p>
+              <p class="font-body text-sm text-[#57534E] leading-relaxed">
+                Completed intensive post-graduate curriculum covering systems architecture, data structures, multi-threaded programming, and enterprise distributed computing.
+              </p>
+            </div>
+
+            <!-- Undergraduate: CEM Punnapra -->
+            <div class="relative">
+              <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-[#A8A29E] border-2 border-[#FAF8F5]"></div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-display text-lg font-medium text-[#1C1917]">College of Engineering and Management, Punnapra</h3>
+                  <span class="font-mono text-[11px] px-2 py-0.5 bg-[#F4F1EB] text-[#57534E] rounded font-medium">Education</span>
+                </div>
+                <span class="font-mono text-xs text-[#57534E]">2015 – 2019</span>
+              </div>
+              <p class="font-body text-xs font-medium text-[#1B4332] uppercase tracking-wider mb-2">B.Tech in Computer Science and Engineering</p>
+              <p class="font-body text-sm text-[#57534E] leading-relaxed">
+                Core academic foundations in algorithms, database management systems, operating systems, network protocols, and software engineering methodologies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Resume & Contact Section -->
+    <section id="resume" class="pt-4 scroll-mt-24" aria-labelledby="resume-heading">
+      <div id="contact" class="flex items-center justify-between border-b border-[#E5E2DC] pb-3 mb-8 scroll-mt-24">
+        <h2 id="resume-heading" class="font-display text-2xl md:text-3xl font-medium text-[#1C1917]">Resume &amp; Contact</h2>
+        <span class="font-mono text-xs text-[#57534E] uppercase tracking-wider">Connect &amp; Documents</span>
+      </div>
+
+      <div class="bg-white border border-[#E5E2DC] rounded-lg p-6 sm:p-8 shadow-sm">
+        <div class="max-w-2xl mb-8">
+          <p class="font-body text-base text-[#57534E] leading-relaxed">
+            I maintain tailored documentation highlighting specific focus areas for prospective teams and collaborators. You can download the respective version below or reach out directly.
+          </p>
+        </div>
+
+        <!-- Download Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <a href="assets/resumes/Akhil_Kumar_Product_Resume.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-[#FAF8F5] hover:bg-[#F4F1EB] border border-[#E5E2DC] rounded-lg transition-colors group hover-lift" aria-label="Download Akhil Kumar Product Management Resume (PDF opens in new tab)">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#1B4332] group-hover:scale-105 transition-transform" aria-hidden="true">description</span>
+              <div>
+                <div class="font-medium text-sm text-[#1C1917]">Product Management &amp; Ops</div>
+                <div class="font-mono text-xs text-[#57534E]">PDF Resume</div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[#57534E] group-hover:text-[#1B4332]" aria-hidden="true">download</span>
+          </a>
+
+          <a href="assets/resumes/Akhil_Kumar_Platform_Resume.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-[#FAF8F5] hover:bg-[#F4F1EB] border border-[#E5E2DC] rounded-lg transition-colors group hover-lift" aria-label="Download Akhil Kumar Cloud and Platform Engineering Resume (PDF opens in new tab)">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#1B4332] group-hover:scale-105 transition-transform" aria-hidden="true">description</span>
+              <div>
+                <div class="font-medium text-sm text-[#1C1917]">Cloud &amp; Platform Engineering</div>
+                <div class="font-mono text-xs text-[#57534E]">PDF Resume</div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[#57534E] group-hover:text-[#1B4332]" aria-hidden="true">download</span>
+          </a>
+        </div>
+
+        <!-- Direct Contact Channels -->
+        <div class="pt-6 border-t border-[#E5E2DC] flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+          <div class="flex flex-wrap items-center gap-6">
+            <a href="https://github.com/akhilkumar0024" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[#57534E] hover:text-[#1B4332] transition-colors" aria-label="Akhil Kumar GitHub profile (opens in new tab)">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">terminal</span>
+              <span>github.com/akhilkumar0024</span>
+            </a>
+            <a href="https://linkedin.com/in/akhilkumar0024" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[#57534E] hover:text-[#1B4332] transition-colors" aria-label="Akhil Kumar LinkedIn profile (opens in new tab)">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">badge</span>
+              <span>linkedin.com/in/akhilkumar0024</span>
+            </a>
+          </div>
+          <a href="mailto:akhilkumar0024@gmail.com" class="inline-flex items-center gap-1.5 text-[#1B4332] font-semibold hover:underline" aria-label="Send email to akhilkumar0024@gmail.com">
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">mail</span>
+            <span>akhilkumar0024@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#E5E2DC] bg-[#FAF8F5] py-12 mt-16" role="contentinfo">
+    <div class="max-w-6xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div>
+        <p class="font-display text-lg font-medium text-[#1C1917]">Akhil Kumar</p>
+        <p class="font-body text-sm text-[#57534E] mt-0.5">Building products. Engineering the platforms behind them.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 text-xs font-mono text-[#57534E]">
+        <a href="#projects" class="hover:text-[#1B4332] transition-colors">Projects</a>
+        <a href="#focus" class="hover:text-[#1B4332] transition-colors">Focus</a>
+        <a href="#about" class="hover:text-[#1B4332] transition-colors">About</a>
+        <a href="#resume" class="hover:text-[#1B4332] transition-colors">Resume</a>
+        <a href="https://github.com/akhilkumar0024" target="_blank" rel="noopener noreferrer" class="hover:text-[#1B4332] transition-colors">GitHub</a>
+        <a href="https://linkedin.com/in/akhilkumar0024" target="_blank" rel="noopener noreferrer" class="hover:text-[#1B4332] transition-colors">LinkedIn</a>
+        <a href="mailto:akhilkumar0024@gmail.com" class="hover:text-[#1B4332] transition-colors">Email</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
